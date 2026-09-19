@@ -1,0 +1,253 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Bundled fonts ─────────────────────────────────────────────── */
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/assets/fonts/JetBrainsMono.woff2") format("woff2");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("/assets/fonts/Satoshi.woff2") format("woff2");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/assets/fonts/GeistMono.woff2") format("woff2");
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --font-display: "JetBrains Mono", monospace;
+    --font-body: "Satoshi", sans-serif;
+    --font-mono: "Geist Mono", monospace;
+    --radius: 0.25rem;
+
+    /* Light — "lab bench daylight": cool paper, deep ink, teal signal */
+    --background: 0.965 0.006 245;
+    --foreground: 0.19 0.022 250;
+    --card: 1.0 0 0;
+    --card-foreground: 0.19 0.022 250;
+    --popover: 1.0 0 0;
+    --popover-foreground: 0.19 0.022 250;
+
+    --primary: 0.5 0.115 210;
+    --primary-foreground: 0.985 0.005 210;
+
+    --secondary: 0.93 0.01 245;
+    --secondary-foreground: 0.27 0.022 250;
+    --muted: 0.93 0.01 245;
+    --muted-foreground: 0.5 0.018 250;
+
+    --accent: 0.5 0.115 210;
+    --accent-foreground: 0.985 0.005 210;
+
+    --destructive: 0.52 0.2 27;
+    --destructive-foreground: 0.985 0.005 27;
+
+    --success: 0.52 0.145 152;
+    --success-foreground: 0.985 0.005 152;
+    --warning: 0.62 0.14 75;
+    --warning-foreground: 0.19 0.02 75;
+    --unstable: 0.52 0.2 27;
+    --unstable-foreground: 0.985 0.005 27;
+
+    --border: 0.88 0.012 245;
+    --input: 0.88 0.012 245;
+    --ring: 0.5 0.115 210;
+
+    --chart-1: 0.55 0.17 45;
+    --chart-2: 0.55 0.13 210;
+    --chart-3: 0.55 0.12 260;
+    --chart-4: 0.62 0.14 75;
+    --chart-5: 0.52 0.145 152;
+
+    --sidebar: 0.945 0.008 245;
+    --sidebar-foreground: 0.19 0.022 250;
+    --sidebar-primary: 0.5 0.115 210;
+    --sidebar-primary-foreground: 0.985 0.005 210;
+    --sidebar-accent: 0.93 0.01 245;
+    --sidebar-accent-foreground: 0.27 0.022 250;
+    --sidebar-border: 0.88 0.012 245;
+    --sidebar-ring: 0.5 0.115 210;
+
+    /* Signature: LCD phosphor echo */
+    --lcd-bg: 0.22 0.03 205;
+    --lcd-text: 0.85 0.15 195;
+    --lcd-dim: 0.62 0.07 200;
+
+    --gradient-primary: linear-gradient(
+      135deg,
+      oklch(0.55 0.13 205) 0%,
+      oklch(0.45 0.1 225) 100%
+    );
+    --gradient-subtle: linear-gradient(
+      180deg,
+      oklch(0.99 0.004 245) 0%,
+      oklch(0.955 0.008 245) 100%
+    );
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    /* Dark (primary) — "control room": blue-black, phosphor cyan signal */
+    --background: 0.145 0.018 250;
+    --foreground: 0.94 0.008 245;
+    --card: 0.185 0.02 250;
+    --card-foreground: 0.94 0.008 245;
+    --popover: 0.21 0.022 250;
+    --popover-foreground: 0.94 0.008 245;
+
+    --primary: 0.78 0.13 195;
+    --primary-foreground: 0.15 0.02 250;
+
+    --secondary: 0.235 0.022 250;
+    --secondary-foreground: 0.86 0.008 245;
+    --muted: 0.235 0.022 250;
+    --muted-foreground: 0.63 0.015 245;
+
+    --accent: 0.78 0.13 195;
+    --accent-foreground: 0.15 0.02 250;
+
+    --destructive: 0.63 0.2 25;
+    --destructive-foreground: 0.15 0.02 25;
+
+    --success: 0.74 0.16 152;
+    --success-foreground: 0.15 0.02 152;
+    --warning: 0.79 0.15 78;
+    --warning-foreground: 0.17 0.02 78;
+    --unstable: 0.66 0.21 25;
+    --unstable-foreground: 0.98 0.005 25;
+
+    --border: 0.29 0.022 250;
+    --input: 0.29 0.022 250;
+    --ring: 0.78 0.13 195;
+
+    --chart-1: 0.7 0.17 45;
+    --chart-2: 0.78 0.13 195;
+    --chart-3: 0.66 0.12 265;
+    --chart-4: 0.79 0.15 78;
+    --chart-5: 0.74 0.16 152;
+
+    --sidebar: 0.175 0.02 250;
+    --sidebar-foreground: 0.94 0.008 245;
+    --sidebar-primary: 0.78 0.13 195;
+    --sidebar-primary-foreground: 0.15 0.02 250;
+    --sidebar-accent: 0.235 0.022 250;
+    --sidebar-accent-foreground: 0.86 0.008 245;
+    --sidebar-border: 0.29 0.022 250;
+    --sidebar-ring: 0.78 0.13 195;
+
+    --lcd-bg: 0.19 0.028 205;
+    --lcd-text: 0.86 0.15 195;
+    --lcd-dim: 0.6 0.07 200;
+
+    --gradient-primary: linear-gradient(
+      135deg,
+      oklch(0.82 0.14 195) 0%,
+      oklch(0.68 0.13 215) 100%
+    );
+    --gradient-subtle: linear-gradient(
+      180deg,
+      oklch(0.2 0.022 250) 0%,
+      oklch(0.165 0.02 250) 100%
+    );
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    font-feature-settings: "tnum" 1, "ss01" 1;
+  }
+  /* Tabular numerals everywhere numbers matter */
+  .font-mono,
+  [data-numeric] {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+
+  /* Large glanceable instrument readout */
+  .readout {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Signature: LCD phosphor echo strip */
+  .lcd-panel {
+    background-color: oklch(var(--lcd-bg));
+    color: oklch(var(--lcd-text));
+    font-family: var(--font-mono);
+    letter-spacing: 0.06em;
+    text-shadow: 0 0 12px oklch(var(--lcd-text) / 0.45);
+    border: 1px solid oklch(var(--lcd-text) / 0.22);
+    box-shadow: inset 0 1px 0 oklch(var(--lcd-text) / 0.12);
+  }
+  .lcd-dim {
+    color: oklch(var(--lcd-dim));
+    text-shadow: none;
+  }
+
+  /* Instrument panel grid texture */
+  .panel-grid {
+    background-image: linear-gradient(
+        oklch(var(--border) / 0.5) 1px,
+        transparent 1px
+      ), linear-gradient(90deg, oklch(var(--border) / 0.5) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  .gradient-primary {
+    background-image: var(--gradient-primary);
+  }
+  .gradient-subtle {
+    background-image: var(--gradient-subtle);
+  }
+
+  /* Status dot pulse for live/unstable states */
+  .status-pulse {
+    animation: status-pulse 1.6s ease-in-out infinite;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: oklch(var(--border));
+    border-radius: 9999px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+/* Respect reduced-motion preferences: disable continuous animations */
+@media (prefers-reduced-motion: reduce) {
+  .status-pulse {
+    animation: none;
+  }
+  .transition-smooth {
+    transition: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,76 @@
+// Version: 4.0.0
+type AccessControlState__726381554 =
+  {
+    var adminAssigned : Bool;
+    userRoles : Map__230067015<Principal, UserRole__898470527>
+  };
+type Data__44217153<K, V> = {var count : Nat__227979830; kvs : [var ?(K, V)]};
+type Internal__283199666<K, V> =
+  {children : [var ?Node__204828119<K, V>]; data : Data__44217153<K, V>};
+type Leaf__598469445<K, V> = {data : Data__44217153<K, V>};
+type List__355132335<T> =
+  {
+    var blockIndex : Nat__227979830;
+    var blocks : [var [var ?T]];
+    var elementIndex : Nat__227979830
+  };
+type List__836382695<T> = List__355132335<T>;
+type Map__230067015<K, V> = Map__405889023<K, V>;
+type Map__405889023<K, V> = Map__603270868<K, V>;
+type Map__603270868<K, V> =
+  {var root : Node__204828119<K, V>; var size : Nat__227979830};
+type Nat__227979830 = Nat__920180692;
+type Nat__920180692 = Nat;
+type NewActor__269912 =
+  {
+    accessControlState : AccessControlState__726381554;
+    history : List__836382695<Reading__868075170>
+  };
+type Node__204828119<K, V> =
+  {#internal : Internal__283199666<K, V>; #leaf : Leaf__598469445<K, V>};
+type OverallStatus__552217453 = {#Stable; #Unstable; #Warning};
+type OverallStatus__682158532 = OverallStatus__552217453;
+type Reading__221331079 =
+  {
+    gas : Nat;
+    gasStatus : SensorStatus__142420687;
+    humidity : Float;
+    humidityStatus : SensorStatus__142420687;
+    overallStatus : OverallStatus__682158532;
+    temperature : Float;
+    temperatureStatus : SensorStatus__142420687;
+    timestamp : Timestamp__428453774
+  };
+type Reading__868075170 =
+  {
+    gas : Nat;
+    gasStatus : {#Stable; #Unstable; #Warning};
+    humidity : Float;
+    humidityStatus : {#Stable; #Unstable; #Warning};
+    overallStatus : {#Stable; #Unstable; #Warning};
+    temperature : Float;
+    temperatureStatus : {#Stable; #Unstable; #Warning};
+    timestamp : Int
+  };
+type SensorStatus__142420687 = SensorStatus__799443355;
+type SensorStatus__799443355 = {#Stable; #Unstable; #Warning};
+type Timestamp__301639476 = Int;
+type Timestamp__428453774 = Timestamp__301639476;
+type UserRole__898470527 = {#admin; #guest; #user};
+type UserRole__91647283 = {#admin; #guest; #user};
+{
+  "20260919_000000" : (_old : {}) -> NewActor__269912
+}
+actor  {
+  stable accessControlState :
+    {
+      var adminAssigned : Bool;
+      userRoles : Map__230067015<Principal, UserRole__91647283>
+    };
+  stable history :
+    {
+      var blockIndex : Nat__227979830;
+      var blocks : [var [var ?Reading__221331079]];
+      var elementIndex : Nat__227979830
+    }
+};

@@ -1,0 +1,20 @@
+{
+  "overview": "A real-time monitoring dashboard for an ESP32 sensor rig that displays live temperature, humidity, and gas readings with Stable, Warning, and Unstable status indicators.",
+  "features": [
+    "Live temperature, gas, and humidity readouts that update automatically",
+    "Stable, Warning, and Unstable status badges for each sensor",
+    "Overall system status banner showing the worst current reading",
+    "Live trend chart plotting all three sensors over time",
+    "Timestamped recent-readings log, newest first",
+    "Simple, high-contrast layout for at-a-glance monitoring"
+  ],
+  "category": "monitoring-dashboard",
+  "tags": [
+    "monitoring",
+    "iot",
+    "sensors",
+    "real-time",
+    "dashboard"
+  ],
+  "last_updated": "2026-09-19T10:49:19.696Z"
+}

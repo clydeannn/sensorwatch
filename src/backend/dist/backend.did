@@ -1,0 +1,110 @@
+type Value = 
+ variant {
+   "bool": bool;
+   float: float64;
+   "int": int;
+   "nat": nat;
+   "null";
+   "text": text;
+ };
+type UserRole = 
+ variant {
+   admin;
+   guest;
+   user;
+ };
+type Timestamp = int;
+type Thresholds = 
+ record {
+   fluctuationDelta: float64;
+   gasNormalMax: nat;
+   gasWarningMax: nat;
+   humidityNormalMax: float64;
+   humidityNormalMin: float64;
+   humidityWarningMax: float64;
+   humidityWarningMin: float64;
+   temperatureNormalMax: float64;
+   temperatureNormalMin: float64;
+   temperatureWarningMax: float64;
+   temperatureWarningMin: float64;
+ };
+type SensorStatus = 
+ variant {
+   Stable;
+   Unstable;
+   Warning;
+ };
+type Result__1 = 
+ variant {
+   err: Error;
+   ok;
+ };
+type Result = 
+ record {
+   hasMore: bool;
+   rows: vec vec Cell;
+ };
+type Reading = 
+ record {
+   gas: nat;
+   gasStatus: SensorStatus;
+   humidity: float64;
+   humidityStatus: SensorStatus;
+   overallStatus: OverallStatus;
+   temperature: float64;
+   temperatureStatus: SensorStatus;
+   timestamp: Timestamp;
+ };
+type OverallStatus = 
+ variant {
+   Stable;
+   Unstable;
+   Warning;
+ };
+type Error = 
+ variant {
+   AmbiguousAttribute: record {
+                         field: text;
+                         sources: vec text;
+                       };
+   FrontendOriginMismatch: record {
+                             expected: vec text;
+                             got: text;
+                           };
+   FrontendOriginsNotConfigured;
+   MalformedCandid;
+   MissingField: text;
+   MixedSsoSources: record {
+                      otherKeys: vec text;
+                      ssoKeys: vec text;
+                    };
+   NoAttributes;
+   Stale: record {ageNs: nat;};
+   UnknownNonce;
+   UntrustedSsoSource: record {domain: text;};
+ };
+type Cell = 
+ record {
+   name: text;
+   value: Value;
+ };
+service : {
+  _initialize_access_control: () -> ();
+  _internet_identity_sign_in_finish: () -> (Result__1);
+  _internet_identity_sign_in_start: () -> (blob);
+  /// Advance the simulation by one step and persist the new reading.
+  advanceSimulation: () -> (Reading);
+  assignCallerUserRole: (user: principal, role: UserRole) -> ();
+  execute: (qJson: text) -> (Result) query;
+  /// Static Markdown description of this backend's public API.
+  getApiDoc: () -> (text) query;
+  getCallerUserRole: () -> (UserRole) query;
+  /// Current reading, or null before the first simulation step.
+  getCurrentReading: () -> (opt Reading) query;
+  /// Bounded recent readings, newest first.
+  getRecentReadings: (limit: nat) -> (vec Reading) query;
+  /// Predefined thresholds used to derive status.
+  getThresholds: () -> (Thresholds) query;
+  isCallerAdmin: () -> (bool) query;
+  schema: () -> (text) query;
+}
